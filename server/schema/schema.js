@@ -78,6 +78,13 @@ const RootQuery = new GraphQLObjectType({
                 // args.id
                 return _.find(authors,{id:args.id}); // id is automatically transformed to a string when used in JS
             }
+        },
+        books:{
+            type: new GraphQLList(BookType),
+            resolve(parent, args){
+                // code to get data from db...
+                return books;
+            }
         }
     }
 });
