@@ -14,12 +14,12 @@ To avoid the complexity of installing and managing a local database, this projec
 This project has been built with NodeJS v10.2.1
 
 ## Run project
-There are 2 servers to start in order to benefit from this application.
+There are 2 servers to start in order to benefit from this application.  
 ***server*** (with GraphQL back-end and MongoDb):
 * cd server
 * `npm run start`
 
-***client***
+***client*** (ReactJS app)
 * cd server
 * `npm run start`
 
