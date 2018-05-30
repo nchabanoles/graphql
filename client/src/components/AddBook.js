@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {graphql} from 'react-apollo';
-import {getAuthorsQuery} from '../queries/queries';
+import {graphql, compose} from 'react-apollo';
+import {getAuthorsQuery, addBookMutation} from '../queries/queries';
 
 
 class AddBook extends Component {
@@ -13,7 +13,7 @@ class AddBook extends Component {
         };
     }
     displayAuthors(){
-        var data = this.props.data;
+        var data = this.props.getAuthorsQuery;
         if(data.loading){
             return(<option disabled>Loading Authors...</option>)
         } else {
@@ -26,7 +26,13 @@ class AddBook extends Component {
         // this refers to the component because we called
         // this.submitForm.bind(this) at a time when 'this' was a reference to the component
         e.preventDefault(); // avoid to reload the page when submitting the form
-        console.log(this.state);
+        this.props.addBookMutation({
+            variables : {
+                name: this.state.name,
+                genre: this.state.genre,
+                authorId: this.state.authorId
+            }
+        });
     }
     render() {
         return (
@@ -52,4 +58,7 @@ class AddBook extends Component {
     }
 }
 
-export default graphql(getAuthorsQuery)(AddBook);
+export default compose(
+    graphql(getAuthorsQuery,{name: "getAuthorsQuery"}), // the name will be used as a property name in the .props
+    graphql(addBookMutation,{name: "addBookMutation"})  // the name will be used as property name in the .props
+)(AddBook);
