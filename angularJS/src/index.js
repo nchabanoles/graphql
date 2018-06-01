@@ -6,7 +6,7 @@ import { HttpLink } from "apollo-link-http";
 import angular from "angular";
 
 // Queries
-import {getBooksQuery, getAuthorsQuery, addBookMutation} from './queries/queries';
+import {getBookQuery, getBooksQuery, getAuthorsQuery, addBookMutation} from './queries/queries';
 
 // Style
 import ngAnimate from 'angular-animate'
@@ -59,6 +59,20 @@ angular.module("app", [AngularApollo, ngAnimate]).config(apolloProvider => {
                 .then(() => {
                     $scope.newBook = {};
                     fetchBooks();
+                });
+        };
+
+        $scope.displayBook = function(book) {
+            apollo
+                .query({
+                    query: getBookQuery,
+                    variables: {
+                        id: book.id
+                    }
+                })
+                .then(result => {
+                    $scope.selectedBook = result.data.book;
+                    console.log('Book fetched from server:', $scope.selectedBook);
                 });
         };
 

@@ -29,10 +29,10 @@
       <h1>Welcome to the ng-library powered by GraphQL.</h1>
       <div ng-controller="MyController">
         <div>
-          <input type="search" ng-model="q" placeholder="filter books..." aria-label="filter books" />
+          <input type="search" class="book-list-search" ng-model="q" placeholder="filter books..." aria-label="filter books" />
           <p>The library contains {{results.length}} books {{q?"matching your search":""}}.</p>
           <ul id="book-list" class="animate-container">
-            <li class="animate-repeat" ng-repeat="book in books | filter:q as results track by book.id">
+            <li class="animate-repeat" ng-repeat="book in books | filter:q as results track by book.id" ng-click="displayBook(book)">
               <em>{{book.name}}</em> written by {{book.author.name}} ({{book.author.age}} years old).
             </li>
           </ul>
@@ -53,6 +53,20 @@
           </div>
           <button title="Add Book">+</button>
         </form>
+        <div id="book-details">
+          <div ng-if="selectedBook">
+            <h2>{{selectedBook.name}}</h2>
+            <p>{{selectedBook.genre}}</p>
+            <p>{{selectedBook.author.name}}</p>
+            <p>All books by this author</p>
+            <ul class="other-books">
+              <li ng-repeat="book in selectedBook.author.books track by book.id" ng-click="displayBook(book)">
+                <em>{{book.name}}</em>
+              </li>
+            </ul>
+          </div>
+          <p ng-if="!selectedBook">No book selected</p>
+        </div>
       </div>
 
     </div>
