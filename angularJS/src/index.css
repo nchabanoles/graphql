@@ -38,6 +38,19 @@ body {
   color: #354dbc;
 }
 
+#book-list li em{
+  font-size: 1.2em;
+}
+
+#book-list li:hover{
+  border: 2px solid #354dbc;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.3);
+}
+
+#book-list li:hover em{
+  text-decoration: underline;
+}
+
 /* AddBook */
 form{
   background: #fff;
@@ -99,6 +112,11 @@ form button{
 
 .other-books {
   cursor: pointer;
+}
+
+.other-books li:hover{
+  font-size: 1em;
+  text-decoration: underline;
 }
 
 /* book-list filtering animation */

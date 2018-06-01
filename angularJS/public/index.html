@@ -33,7 +33,8 @@
           <p>The library contains {{results.length}} books {{q?"matching your search":""}}.</p>
           <ul id="book-list" class="animate-container">
             <li class="animate-repeat" ng-repeat="book in books | filter:q as results track by book.id" ng-click="displayBook(book)">
-              <em>{{book.name}}</em> written by {{book.author.name}} ({{book.author.age}} years old).
+              <em>{{book.name}}</em>
+              <p>Written by {{book.author.name}} ({{book.author.age}} years old).</p>
             </li>
           </ul>
         </div>
