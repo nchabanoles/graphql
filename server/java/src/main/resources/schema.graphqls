@@ -1,0 +1,14 @@
+schema {
+    query: Query
+}
+
+type Query {
+    allBooks: [Book]
+}
+
+type Book {
+    id: ID!
+    name: String!
+    genre: String
+}
+

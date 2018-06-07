@@ -8,7 +8,8 @@
  * AngularJS (in client/angularJS folder)  
  
  The back-end has been implemented with:  
- * NodeJS (in server/nodeJS folder)  
+ * NodeJS (in server/nodeJS folder)
+ * Java (in server/java folder)  
  
  In all back-end implementations, the persistence is made on MongoDb.
 
@@ -28,6 +29,11 @@ This project has been built with NodeJS v10.2.1
 ****NodeJS Server****
 * cd server/nodeJS
 * `npm run start`
+
+****Java Server****
+* cd server/java
+* `mvn jetty:run`
+
 
 ### Client
 You can choose between several client implementation.
