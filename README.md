@@ -1,8 +1,16 @@
-# GraphQL - NodeJS - ReactJS - MongoDb
+# Getting started with GraphQL
  
- This project is a discovery project for GraphQL.
- The front-end has been implemented with ReactJS.
- The persistence is made on MongoDb.
+ This project is a discovery project for GraphQL.  
+ The same application has been implemented in several technologies.    
+ 
+ The front-end has been implemented with:  
+ * ReactJS (in client/reactJS folder)
+ * AngularJS (in client/angularJS folder)  
+ 
+ The back-end has been implemented with:  
+ * NodeJS (in server/nodeJS folder)  
+ 
+ In all back-end implementations, the persistence is made on MongoDb.
 
 
 ## Pre-requisits
