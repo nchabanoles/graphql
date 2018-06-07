@@ -14,13 +14,22 @@ To avoid the complexity of installing and managing a local database, this projec
 This project has been built with NodeJS v10.2.1
 
 ## Run project
-There are 2 servers to start in order to benefit from this application.  
-***server*** (with GraphQL back-end and MongoDb):
-* cd server
+  
+### Server
+
+****NodeJS Server****
+* cd server/nodeJS
+* `nodemon app.js`
+
+### client
+You can choose between several client implementation.
+
+****React Client****
+* cd client/reactJS
 * `npm run start`
 
-***client*** (ReactJS app)
-* cd server
+****AngularJS Client****
+* cd client/angularJS
 * `npm run start`
 
 Once both server and client have been started, the application is available here: http://localhost:3000
