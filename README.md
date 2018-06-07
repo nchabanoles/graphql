@@ -19,9 +19,9 @@ This project has been built with NodeJS v10.2.1
 
 ****NodeJS Server****
 * cd server/nodeJS
-* `nodemon app.js`
+* `npm run start`
 
-### client
+### Client
 You can choose between several client implementation.
 
 ****React Client****
