@@ -1,28 +1,52 @@
 package com.chabanoles.graphql.repositories;
 
+import static com.mongodb.client.model.Filters.eq;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import com.chabanoles.graphql.model.Book;
+import com.mongodb.client.MongoCollection;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
 /**
  * Created by Nicolas Chabanoles on 07/06/18.
  */
 public class BookRepository {
 
-    private final List<Book> books;
+    private final MongoCollection<Document> books;
 
-    public BookRepository() {
-        books = new ArrayList();
-        books.add(new Book("id1", "book name 1", "genre 1"));
-        books.add(new Book("id2", "book name 2", "genre 2"));
+    public BookRepository(MongoCollection<Document> books) {
+        this.books = books;
+    }
+
+    public Book findById(String id) {
+        Document doc = books.find(eq("_id", new ObjectId(id))).first();
+        return toBook(doc);
+    }
+
+    private Book toBook(Document doc) {
+        return new Book(
+                doc.get("_id").toString(),
+                doc.getString("name"),
+                doc.getString("genre"));
     }
 
     public List<Book> getAllBooks() {
-        return books;
+        List<Book> allBooks = new ArrayList<>();
+        books.find().forEach((Consumer<? super Document>) document -> {
+            allBooks.add(toBook(document));
+        });
+        return allBooks;
     }
 
-    public void saveBook(Book book) {
-        books.add(book);
+    public Book saveBook(Book book) {
+        Document doc = new Document();
+        doc.append("name", book.getName());
+        doc.append("genre", book.getGenre());
+        books.insertOne(doc);
+        return toBook(doc);
     }
 }

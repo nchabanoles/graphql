@@ -22,4 +22,6 @@ public class Query implements GraphQLRootResolver {
         return bookRepository.getAllBooks();
     }
 
+    public Book book(String id) { return bookRepository.findById(id); }
+
 }
