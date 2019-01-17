@@ -54,7 +54,7 @@
       <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/graphiql@0.11.2/graphiql.css" />
       <script src="http://cdn.jsdelivr.net/npm/graphiql@0.11.2/graphiql.js"></script>
 
-
+      <script src="graphiql-wc.js"></script>
 
   </head>
   <body>
@@ -62,10 +62,8 @@
       You need to enable JavaScript to run this app.
     </noscript>
 
-    <div id="graphiql">Loading Graphiql...</div>
-
     <!-- Placeholder where the graphiql editor will be inserted. //TODO: see if I can use shadow dom instead -->
-    <script src="graphiql-wc.js"></script>
+    <div id="graphiql">Loading Graphiql...</div>
 
     <!-- trigger web component logic -->
     <graphiql-element></graphiql-element>
