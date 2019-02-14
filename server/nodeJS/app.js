@@ -7,7 +7,7 @@ const cors = require('cors');
 const app = express();
 
 // allow cross-origin requests
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({credentials: true, origin: function (origin, callback) {callback(null, true)}}));
 
 mongoose.connect('mongodb://mongouser:mongopassword@ds255319.mlab.com:55319/graphql-nodejs');
 mongoose.connection.once('open', ()=>{

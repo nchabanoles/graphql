@@ -11,5 +11,8 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
-  "browserslist": "> 0.25%, not dead"
+  "browserslist": "> 0.25%, not dead",
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.0"
+  }
 }

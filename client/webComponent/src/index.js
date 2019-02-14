@@ -4,6 +4,7 @@ import GraphiQL from 'graphiql';
 import fetch from 'isomorphic-fetch';
 
 class GraphiQLElement extends HTMLElement {
+    parameters = {};
     constructor() {
         super();
     }
@@ -11,8 +12,7 @@ class GraphiQLElement extends HTMLElement {
             console.log('GraphiQL WC Connected to DOM!');
 
 
-          var parameters = {};
-          parameters.query = this.getAttribute('value');
+          this.parameters.query = this.getAttribute('value');
 
           var that = this;
 
@@ -21,11 +21,11 @@ class GraphiQLElement extends HTMLElement {
           }
 
           function onEditVariables(newVariables) {
-            parameters.variables = newVariables;
+            that.parameters.variables = newVariables;
           }
 
           function onEditOperationName(newOperationName) {
-            parameters.operationName = newOperationName;
+            that.parameters.operationName = newOperationName;
           }
 
           // Defines a GraphQL fetcher using the fetch API. You're not required to
@@ -34,7 +34,7 @@ class GraphiQLElement extends HTMLElement {
           function graphQLFetcher(graphQLParams) {
             // This example expects a GraphQL server at the path /graphql.
             // Change this to point wherever you host your GraphQL server.
-            return fetch('http://192.168.1.62:4000/graphql', {
+            return fetch('http://localhost:4000/graphql', {
               method: 'post',
               headers: {
                 'Accept': 'application/json',
@@ -60,7 +60,7 @@ class GraphiQLElement extends HTMLElement {
 
             var that = this;
 
-          function draw(queryValue) {
+          function draw() {
 
             var editor = document.createElement('div');
              editor.id = "graphql-editor";
@@ -75,9 +75,9 @@ class GraphiQLElement extends HTMLElement {
               ReactDOM.render(
                 React.createElement(GraphiQL, {
                   fetcher: graphQLFetcher,
-                  query: queryValue,
-                  variables: parameters.variables,
-                  operationName: parameters.operationName,
+                  query: that.parameters.query,
+                  variables: that.parameters.variables,
+                  operationName: that.parameters.operationName,
                   onEditQuery: onEditQuery,
                   onEditVariables: onEditVariables,
                   onEditOperationName: onEditOperationName
@@ -86,7 +86,7 @@ class GraphiQLElement extends HTMLElement {
               );
           }
 
-          setTimeout(()=>draw(parameters.query), 200);
+          setTimeout(draw, 200);
   }
 
    get value() {

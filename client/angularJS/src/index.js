@@ -15,7 +15,7 @@ import './index.css';
 
 angular.module("app", [AngularApollo, ngAnimate]).config(apolloProvider => {
     apolloProvider.defaultClient(new ApolloClient({
-        link: new HttpLink({ uri: 'http://localhost:4000/graphql' }),
+        link: new HttpLink({ uri: 'http://localhost:8080/graphql' }),
         cache: new InMemoryCache()
     }));
 })
